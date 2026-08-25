@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Weather Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="default">
+
+    <!-- Background Effects -->
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <main class="dashboard">
+
+        <!-- HEADER -->
+        <header class="header">
+
+            <div class="brand">
+                <div class="brand-icon">
+                    🌤️
+                </div>
+
+                <div>
+                    <h1>Weather Dashboard</h1>
+                    <p>Live weather updates for any city in the world</p>
+                </div>
+            </div>
+
+            <button id="unitToggleBtn" class="unit-button">
+                <span>🌡️</span>
+                <span id="unitText">°C / °F</span>
+            </button>
+
+        </header>
+
+
+        <!-- SEARCH -->
+        <section class="search-section">
+
+            <div class="search-box">
+
+                <span class="search-icon">⌕</span>
+
+                <input
+                    type="text"
+                    id="cityInput"
+                    placeholder="Enter any city name..."
+                    autocomplete="off"
+                >
+
+                <button id="searchBtn">
+                    Search
+                </button>
+
+            </div>
+
+            <div id="searchMessage"></div>
+
+        </section>
+
+
+        <!-- LOADING -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Loading weather...</p>
+        </div>
+
+
+        <!-- WEATHER CONTENT -->
+        <section id="weatherContent" class="weather-content hidden">
+
+            <!-- MAIN WEATHER CARD -->
+            <div class="main-weather-card glass-card">
+
+                <div class="location-header">
+
+                    <div>
+                        <h2>
+                            <span>📍</span>
+                            <span id="cityName">Jaffna</span>
+                        </h2>
+
+                        <p id="dateTime">
+                            Loading...
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="main-weather">
+
+                    <div class="weather-icon" id="currentIcon">
+                        🌤️
+                    </div>
+
+                    <div class="temperature-area">
+
+                        <div class="temperature">
+                            <span id="temperature">--</span>
+                            <sup id="temperatureUnit">°C</sup>
+                        </div>
+
+                        <h3 id="condition">
+                            Partly Cloudy
+                        </h3>
+
+                        <p>
+                            Feels like
+                            <strong>
+                                <span id="feelsLike">--</span>°
+                            </strong>
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUICK METRICS -->
+                <div class="quick-metrics">
+
+                    <div class="metric">
+                        <span class="metric-icon blue">💧</span>
+
+                        <div>
+                            <small>Humidity</small>
+                            <strong id="humidity">--%</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="metric">
+                        <span class="metric-icon green">💨</span>
+
+                        <div>
+                            <small>Wind Speed</small>
+                            <strong>
+                                <span id="wind">--</span>
+                                <span id="windUnit">km/h</span>
+                            </strong>
+                        </div>
+                    </div>
+
+
+                    <div class="metric">
+                        <span class="metric-icon purple">🌡️</span>
+
+                        <div>
+                            <small>Pressure</small>
+                            <strong>
+                                <span id="pressure">--</span> hPa
+                            </strong>
+                        </div>
+                    </div>
+
+
+                    <div class="metric">
+                        <span class="metric-icon yellow">👁️</span>
+
+                        <div>
+                            <small>Visibility</small>
+                            <strong>
+                                <span id="visibility">--</span> km
+                            </strong>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SIDE INFORMATION -->
+            <div class="side-card glass-card">
+
+                <!-- SUNRISE -->
+                <div class="sun-item">
+
+                    <div class="sun-icon">
+                        🌅
+                    </div>
+
+                    <div>
+                        <span>Sunrise</span>
+                        <strong id="sunrise">--:--</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="divider"></div>
+
+
+                <!-- SUNSET -->
+                <div class="sun-item">
+
+                    <div class="sun-icon">
+                        🌇
+                    </div>
+
+                    <div>
+                        <span>Sunset</span>
+                        <strong id="sunset">--:--</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="divider"></div>
+
+
+                <!-- CIRCULAR METRICS -->
+                <div class="circle-metrics">
+
+                    <div class="circle-metric">
+
+                        <div class="circle humidity-circle">
+                            <strong id="humidityCircle">--%</strong>
+                        </div>
+
+                        <span>Humidity</span>
+
+                    </div>
+
+
+                    <div class="circle-metric">
+
+                        <div class="circle wind-circle">
+                            <strong id="windCircle">--</strong>
+                            <small>km/h</small>
+                        </div>
+
+                        <span>Wind Speed</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="bottom-metrics">
+
+                    <div>
+                        <span>☀️ UV Index</span>
+
+                        <strong>
+                            <span id="uvIndex">--</span>
+                            <em id="uvText">--</em>
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <span>🌿 Air Quality</span>
+
+                        <strong>
+                            <span id="airQuality">--</span>
+                            <em id="airText">--</em>
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FORECAST -->
+        <section id="forecastSection" class="forecast-section glass-card hidden">
+
+            <div class="section-title">
+
+                <div>
+                    <span class="title-icon">📅</span>
+                    <h2>5-Day Forecast</h2>
+                </div>
+
+                <span class="forecast-label">
+                    Daily forecast
+                </span>
+
+            </div>
+
+
+            <div id="forecastGrid" class="forecast-grid">
+                <!-- JavaScript generates cards -->
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer class="footer glass-card">
+
+            <div>
+                <span>◎</span>
+
+                <div>
+                    <small>Location</small>
+                    <strong id="footerLocation">
+                        Jaffna, Sri Lanka
+                    </strong>
+                </div>
+            </div>
+
+
+            <div>
+                <span>⟳</span>
+
+                <div>
+                    <small>Last Updated</small>
+                    <strong id="lastUpdated">
+                        --
+                    </strong>
+                </div>
+            </div>
+
+
+            <div>
+                <span>♥</span>
+
+                <div>
+                    <small>Weather Service</small>
+                    <strong>
+                        Open-Meteo
+                    </strong>
+                </div>
+            </div>
+
+        </footer>
+
+
+        <p class="copyright">
+            Weather Dashboard • Live weather information
+        </p>
+
+    </main>
+
+
+    <script src="weather.js"></script>
+
+</body>
+</html>
